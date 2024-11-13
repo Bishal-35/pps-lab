@@ -1,0 +1,70 @@
+// 3:8 Decoder Module
+module decoder3to8 (
+    input [2:0] in,   // 3-bit input
+    output reg [7:0] out // 8-bit output
+);
+
+    always @(*) begin
+        case (in)
+            3'b000: out = 8'b0000_0001;
+            3'b001: out = 8'b0000_0010;
+            3'b010: out = 8'b0000_0100;
+            3'b011: out = 8'b0000_1000;
+            3'b100: out = 8'b0001_0000;
+            3'b101: out = 8'b0010_0000;
+            3'b110: out = 8'b0100_0000;
+            3'b111: out = 8'b1000_0000;
+            default: out = 8'b0000_0000;
+        endcase
+    end
+endmodule
+
+
+//Testbench code
+
+// Testbench for 3:8 Decoder
+module test_decoder3to8;
+    reg [2:0] in;        // 3-bit input for testing
+    wire [7:0] out;      // 8-bit output from decoder
+
+    // Instantiate the 3:8 Decoder
+    decoder3to8 uut (
+        .in(in),
+        .out(out)
+    );
+
+    initial begin
+        $display("3:8 Decoder Testbench");
+        $display("in | out");
+        $monitor("%b | %b", in, out);
+
+        // Apply all input combinations to test
+        in = 3'b000; #10;
+        in = 3'b001; #10;
+        in = 3'b010; #10;
+        in = 3'b011; #10;
+        in = 3'b100; #10;
+        in = 3'b101; #10;
+        in = 3'b110; #10;
+        in = 3'b111; #10;
+
+        // Finish simulation
+        $finish;
+    end
+endmodule
+
+
+
+
+//output
+
+3:8 Decoder Testbench
+in  | out
+000 | 00000001
+001 | 00000010
+010 | 00000100
+011 | 00001000
+100 | 00010000
+101 | 00100000
+110 | 01000000
+111 | 10000000

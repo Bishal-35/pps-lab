@@ -1,0 +1,39 @@
+module full_adder(input a, b, cin, output S, Cout);
+  assign S = a ^ b ^ cin;
+  assign Cout = (a & b) | (b & cin) | (a & cin);
+endmodule
+
+
+//Testbench Code
+
+module tb_top;
+  reg a, b, c;
+  wire s, c_out;
+  
+  full_adder fa(a, b, c, s, c_out);
+  
+  initial begin
+    $monitor("At time %0t: a=%b b=%b, cin=%b, sum=%b, carry=%b",$time, a,b,c,s,c_out);
+    a = 0; b = 0; c = 0; #1;
+    a = 0; b = 0; c = 1; #1;
+    a = 0; b = 1; c = 0; #1;
+    a = 0; b = 1; c = 1; #1;
+    a = 1; b = 0; c = 0; #1;
+    a = 1; b = 0; c = 1; #1;
+    a = 1; b = 1; c = 0; #1;
+    a = 1; b = 1; c = 1;
+  end
+endmodule
+
+
+
+//output
+
+At time 0: a=0 b=0, cin=0, sum=0, carry=0
+At time 1: a=0 b=0, cin=1, sum=1, carry=0
+At time 2: a=0 b=1, cin=0, sum=1, carry=0
+At time 3: a=0 b=1, cin=1, sum=0, carry=1
+At time 4: a=1 b=0, cin=0, sum=1, carry=0
+At time 5: a=1 b=0, cin=1, sum=0, carry=1
+At time 6: a=1 b=1, cin=0, sum=0, carry=1
+At time 7: a=1 b=1, cin=1, sum=1, carry=1
