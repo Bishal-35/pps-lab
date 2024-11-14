@@ -1,6 +1,6 @@
-module half_adder(input a, b, output s, Cout);
-  assign S = a ^ b;
-  assign Cout = a & b;
+module half_adder(input a, b, output s, cout);
+  assign s = a ^ b;
+  assign cout = a & b;
 endmodule
 
 //Testbench Code
@@ -12,7 +12,8 @@ module tb_top;
   half_adder ha(a, b, s, c_out);
   
   initial begin
-    $monitor("At time %0t: a=%b b=%b, sum=%b, carry=%b",$time, a,b,s,c_out);
+    $display("a  b | sum carry");
+    $monitor("%b  %b |  %b   %b",a,b,s,c_out);
     a = 0; b = 0;
     #1;
     a = 0; b = 1;

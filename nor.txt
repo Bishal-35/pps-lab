@@ -19,7 +19,8 @@ norgate my_gate(
 initial
 begin
 
-    $monitor(t_a, t_b, t_y);
+    $display("a  b  y");
+    $monitor("%b  %b  %b",t_a, t_b, t_y);;
 
     t_a = 1'b0;
     t_b = 1'b0;

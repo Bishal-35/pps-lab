@@ -18,7 +18,8 @@ notgate my_gate(
 initial
 begin
 
-    $monitor(t_a, t_y);
+    $display("a  y");
+    $monitor("%b  %b",t_a, t_y);
 
     t_a = 1'b0;
 

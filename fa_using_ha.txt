@@ -33,7 +33,8 @@ module test_full_adder;
 
   // Apply test cases
   initial begin
-    $monitor("a=%b, b=%b, cin=%b | s_out=%b, c_out=%b", a, b, cin, s_out, c_out);
+    $display("a  b  cin | s_out c_out");
+    $monitor("%b  %b   %b  |   %b     %b",a,b,cin,s_out,c_out);
 
     // Test case 1: a=0, b=0, cin=0
     a = 0; b = 0; cin = 0;
